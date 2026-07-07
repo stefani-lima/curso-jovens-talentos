@@ -1,0 +1,494 @@
+LISTA DE EXERCÍCIOS 01
+
+1. Realize seleções em todas as tabelas do banco de dados “Treina”. Em cada uma
+dessas seleções, devem ser retornadas todas as colunas da tabela.
+
+SELECT *
+   FROM TREINA.TBPESSOA;
+
+SELECT *
+   FROM TREINA.TBIMOVEL;
+
+SELECT *
+   FROM TREINA.TBLOGRADOURO;
+
+SELECT *
+   FROM TREINA.TBPESSOACONTATO;
+
+SELECT *
+   FROM TREINA.TBPESSOAIMOVEL;
+
+SELECT *
+   FROM TREINA.TBTAXA;
+
+2. Realize as seguintes seleções no banco de dados:
+a) Na tabela “tbpessoacontato” efetue uma consulta retornando somente as
+colunas de “código da pessoa” e o seu “número de telefone”;
+
+SELECT TBPESSOACONTATO.PESCODIGO,
+       TBPESSOACONTATO.CTPNUMERO
+   FROM TREINA.TBPESSOACONTATO;
+
+b) Na tabela “tbimovel” efetue uma consulta retornando somente as colunas de
+“código do imóvel”, “largura do imóvel” e “comprimento do imóvel”;
+
+SELECT TBIMOVEL.IMVCODIGO,
+       TBIMOVEL.IMVLARGURA,
+       TBIMOVEL.IMVCOMPRIMENTO
+   FROM TREINA.TBIMOVEL;
+
+c) Na tabela “tbpessoa” efetue uma consulta retornando somente as colunas de
+“código da pessoa”, “nome da pessoa” e “tipo da pessoa”.
+
+SELECT TBPESSOA.PESCODIGO,
+       TBPESSOA.PESNOME,
+       TBPESSOA.PESTIPO
+   FROM TREINA.TBPESSOA;
+
+3. Realize as seguintes consultas no banco de dados com o auxílio dos operadores de
+comparação:
+a) Selecione todos os contatos que sejam do tipo “Celular”;
+
+SELECT *
+   FROM TREINA.TBPESSOACONTATO
+  WHERE CTPDESCRICAO = 'CELULAR'
+
+b) Selecione as colunas de “código da pessoa” e “número de telefone” de todos
+os contatos da pessoa de código 5;
+
+SELECT *
+   FROM TREINA.TBPESSOACONTATO
+  WHERE PESCODIGO = 5;
+
+c) Consulte as colunas “código do imóvel”, “largura” e “comprimento” de todos
+os imóveis que possuam o comprimento maior que 12.
+
+SELECT *
+   FROM TREINA.TBIMOVEL
+  WHERE IMVCOMPRIMENTO > 12;
+
+4. Realize as seguintes seleções no banco de dados utilizando as cláusulas IN,
+BETWEEN e LIKE:
+a) Selecione todas as pessoas que moram nos logradouros 1, 7 e 12;
+
+SELECT *
+   FROM TREINA.TBLOGRADOURO
+  WHERE LOGCODIGO IN (1, 7, 12);
+
+b) Selecione todas as pessoas que tenham o código entre 4 e 8;
+
+SELECT *
+   FROM TREINA.TBLOGRADOURO
+  WHERE LOGCODIGO BETWEEN 4 AND 8;
+
+c) Selecione todas as pessoas que tenham a palavra “PADARIA” no nome.
+
+SELECT *
+   FROM TREINA.TBPESSOA
+  WHERE PESNOME LIKE '%PADARIA%';
+
+================================================================================
+
+LISTA DE EXERCÍCIOS 02
+
+1. Realize as seguintes consultas no banco de dados com o auxílio dos operadores
+AND, OR, NOT e NULL:
+a. Selecione todos os contatos que são do DDD 47 e que são do tipo
+“Celular”;
+
+SELECT *
+   FROM TREINA.TBPESSOACONTATO
+  WHERE CTPNUMERO LIKE '47%'
+    AND CTPDESCRICAO = 'CELULAR';
+
+b. Selecione somente as colunas de “tipo do logradouro” e “descrição do
+logradouro” de todos os logradouros que são do tipo “Travessa” ou do tipo
+“Rua”;
+
+SELECT *
+   FROM TREINA.TBLOGRADOURO
+  WHERE LOGTIPO = 'TRAVESSA'
+     OR LOGTIPO = 'RUA';
+
+c. Selecione todos os contatos que possuem ramal.
+
+SELECT *
+   FROM TREINA.TBPESSOACONTATO
+  WHERE CTPRAMAL IS NOT NULL;
+
+2. Efetue as seguintes consultas ordenando-as conforme solicitado:
+a. Selecione todos os contatos do tipo “Fixo” e ordene-os de forma crescente
+utilizando a coluna referente ao número de telefone;
+
+SELECT *
+   FROM TREINA.TBPESSOACONTATO
+  ORDER BY CTPNUMERO;
+
+b. Selecione todos os imóveis de madeira e ordene-os de forma decrescente
+em relação ao seu comprimento.
+
+SELECT *
+   FROM TREINA.TBIMOVEL
+  WHERE IMVDESCRICAO LIKE '%MADEIRA%'
+  ORDER BY IMVCOMPRIMENTO DESC;
+
+3. Construa um código SQL que retorne os dados de pessoa, quando o código da
+pessoa for entre 8 e 12, desconsiderando pessoas que residam nos logradouros de
+4 a 7.
+
+SELECT *
+   FROM TREINA.TBPESSOA
+  WHERE PESCODIGO BETWEEN 8 AND 12
+    AND NOT LOGCODIGO BETWEEN 4 AND 7;
+
+4. Construa as seguintes consultas:
+a. Crie uma consulta na tabela de pessoas retornando apenas 5 registros.
+Desconsidere os três primeiros;
+
+SELECT *
+   FROM TREINA.TBPESSOA
+  LIMIT 5
+ OFFSET 3;
+
+b. Crie uma consulta que retorne apenas as pessoas que não começam com a
+letra ‘P’, ordene o resultado em ordem alfabética apresentando apenas
+três registros e ignorando os primeiros dois registros.
+
+SELECT TBPESSOA.PESNOME
+   FROM TREINA.TBPESSOA
+  WHERE PESNOME NOT LIKE 'P%'
+  ORDER BY PESNOME
+  LIMIT 3
+ OFFSET 2;
+
+5. Utilizando as funções fornecidas pelo SQL, resolva os seguintes exercícios:
+a. Selecione a maior área em m² de imóvel;
+
+SELECT *
+   FROM TREINA.TBIMOVEL
+  ORDER BY (IMVLARGURA*IMVCOMPRIMENTO) DESC
+  LIMIT 1;
+
+b. Realize uma contagem da quantidade de imóveis madeira;
+
+SELECT COUNT(*)
+   FROM TREINA.TBIMOVEL
+  WHERE IMVDESCRICAO LIKE '%MADEIRA%';
+
+c. Realize uma consulta que retorne a somatória das larguras de todos os
+imóveis.
+
+SELECT SUM(IMVLARGURA)
+   FROM TREINA.TBIMOVEL
+
+6. Realize as seguintes consultas:
+a. Na tabela de imóveis, selecione somente as colunas “imvcodigo”,
+“imvdescricao”, “imvlargura” e “imvcomprimento”. Renomeie essas
+colunas para “Código”, “Descrição”, “Largura” e “Comprimento”. Ordene os
+registros de forma decrescente a partir da coluna de código;
+
+SELECT TBIMOVEL.IMVCODIGO AS "CÓDIGO",
+       TBIMOVEL.IMVDESCRICAO AS "DESCRIÇÃO",
+       TBIMOVEL.IMVLARGURA AS LARGURA,
+       TBIMOVEL.IMVCOMPRIMENTO AS COMPRIMENTO
+   FROM TREINA.TBIMOVEL
+  ORDER BY IMVCODIGO DESC;
+
+b. Para as colunas “pescodigo” e “pesnome”, selecione somente as pessoas
+do sexo feminino, ordene as em ordem alfabética, renomeie as colunas
+para “Código da Pessoa” e “Nome Completo”, a consulta deve retornar
+apenas os quatro primeiros registros.
+
+SELECT TBPESSOA.PESCODIGO AS "CÓDIGO DA PESSOA",
+       TBPESSOA.PESNOME AS "NOME COMPLETO"
+   FROM TREINA.TBPESSOA
+  WHERE PESSEXO = 2
+  ORDER BY PESNOME
+  LIMIT 4;
+
+7. Faça uma seleção que retorne apenas tipos únicos de logradouro.
+
+SELECT DISTINCT
+       TBLOGRADOURO.LOGTIPO
+   FROM TREINA.TBLOGRADOURO
+
+8. Faça uma contagem na quantidade de registros distintos de descrição de contato.
+
+SELECT DISTINCT
+       COUNT(CTPDESCRICAO)
+   FROM TREINA.TBPESSOACONTATO
+  GROUP BY CTPDESCRICAO
+
+===================================================================================
+
+LISTA DE EXERCÍCIOS 03
+
+
+1. Realize as seguintes consultas no banco de dados com o auxílio dos operadores de
+comparação:
+a. Selecione todos os contatos que sejam do tipo ‘Fixo’ ou ‘Celular’;
+
+SELECT *
+   FROM TREINA.TBPESSOACONTATO
+  WHERE CTPDESCRICAO = 'FIXO'
+     OR CTPDESCRICAO = 'CELULAR'
+
+b. Selecione todas as pessoas que moram no logradouro 12 ou no logradouro
+4;
+
+SELECT *
+   FROM TREINA.TBLOGRADOURO
+  WHERE LOGCODIGO = 4
+     OR LOGCODIGO = 12
+
+c. Selecione os registros de taxa de código 1, 5, 6 e 7;
+
+SELECT *
+   FROM TREINA.TBTAXA
+  WHERE TAXCODIGO = 1
+     OR TAXCODIGO BETWEEN 5 AND 7;
+
+d. Selecione o registro de taxa do imóvel 6 referente a pessoa 2.
+
+SELECT *
+   FROM TREINA.TBTAXA
+  WHERE IMVCODIGO = 6
+    AND PESCODIGO = 2;
+
+2. Realize as seguintes seleções no utilizando BETWEEN e LIKE:
+a. Selecione todos os imóveis que tenham a largura entre 10 e 13;
+
+SELECT *
+   FROM TREINA.TBIMOVEL
+  WHERE IMVLARGURA BETWEEN 10 AND 13;
+
+b. Selecione todas as pessoas que começam e terminam com a letra ‘A’;
+
+SELECT *
+   FROM TREINA.TBPESSOA
+  WHERE PESNOME LIKE 'A%'
+    AND PESNOME LIKE '%A';
+
+c. Selecione todos imóveis que tenham largura entre 10 e 12 e comprimento
+entre 11 e 13.
+
+SELECT *
+   FROM TREINA.TBIMOVEL
+  WHERE IMVLARGURA BETWEEN 10 AND 12
+    AND IMVCOMPRIMENTO BETWEEN 11 AND 13;
+
+3. Realize as seguintes consultas no banco de dados com o auxílio dos operadores
+AND, OR e NOT:
+a. Selecione todos os contatos que não são do DDD 47 e que são do tipo
+“Celular”;
+
+SELECT *
+   FROM TREINA.TBPESSOACONTATO
+  WHERE CTPNUMERO NOT LIKE '47%'
+    AND CTPDESCRICAO = 'CELULAR';
+
+b. Selecione todos os imóveis que não são de alvenaria e que possuem largura
+maior que 10;
+
+SELECT *
+   FROM TREINA.TBIMOVEL
+  WHERE IMVDESCRICAO NOT LIKE '%ALVENARIA%'
+    AND IMVLARGURA > 10;
+
+c. Selecione todas as casas mistas que não estão localizadas no logradouro 10.
+
+SELECT *
+   FROM TREINA.TBIMOVEL
+  WHERE IMVDESCRICAO LIKE '%MISTA%'
+    AND LOGCODIGO <> 10;
+
+4. Efetue as seguintes consultas:
+a. Selecione todas as pessoas do sexo feminino, ordene-as em ordem
+alfabética. Limite o resultado em 2 registros, ignorando os 2 primeiros;
+
+SELECT *
+   FROM TREINA.TBPESSOA
+  WHERE PESSEXO = 2
+  ORDER BY PESNOME
+  LIMIT 2
+ OFFSET 2;
+
+b. Selecione todos os registros de taxa com valor maior que R$ 80,00,
+renomeie as colunas, ordene o resultado de forma decrescente em relação
+a coluna de valor, não apresente o registro com a maior taxa.
+
+SELECT TBTAXA.PESCODIGO AS "CÓDIGO DA PESSOA",
+       TBTAXA.IMVCODIGO AS "CÓDIGO DO IMÓVEL",
+	   TBTAXA.TAXCODIGO AS "TAXA DO CÓDIGO",
+	   TBTAXA.TAXVALOR AS "VALOR DA TAXA"
+   FROM TREINA.TBTAXA
+  WHERE TAXVALOR > 80
+  ORDER BY TAXVALOR DESC
+ OFFSET 1;
+
+5. Utilizando as funções fornecidas pelo SQL, realize os seguintes exercícios:
+a. Selecione o imóvel que possui a menor largura;
+
+SELECT MIN(IMVLARGURA)
+   FROM TREINA.TBIMOVEL
+
+b. Realize uma contagem na quantidade de imóveis do tipo ‘Imóvel de
+Alvenaria’;
+
+SELECT COUNT(IMVDESCRICAO)
+   FROM TREINA.TBIMOVEL
+  WHERE IMVDESCRICAO LIKE '%ALVENARIA%'
+
+c. Realize uma consulta que retorne a média do comprimento de todos os
+imóveis.
+
+SELECT AVG(IMVCOMPRIMENTO)
+   FROM TREINA.TBIMOVEL
+
+Lista de Exercícios 04
+
+1. Realize uma consulta que retorne apenas o “Nome da Pessoa”, o “Tipo do
+Logradouro” e a “Descrição do Logradouro”, relacionando as tabelas com o JOIN.
+Apresente apenas os logradouros que estão relacionados a pessoas.
+
+SELECT TBPESSOA.PESNOME,
+       TBLOGRADOURO.LOGTIPO,
+       TBLOGRADOURO.LOGDESCRICAO
+  FROM TREINA.TBPESSOA
+ INNER JOIN TREINA.TBLOGRADOURO
+    ON TBPESSOA.LOGCODIGO = TBLOGRADOURO.LOGCODIGO
+
+2. Consulte as pessoas e seus respectivos imóveis, exibindo as colunas de nome da
+pessoa, código do imóvel e descrição do imóvel, inclusive das pessoas que não
+possuem imóvel.
+
+SELECT TBPESSOA.PESNOME,
+       TBIMOVEL.IMVCODIGO,
+       TBIMOVEL.IMVDESCRICAO
+  FROM TREINA.TBPESSOA
+  LEFT JOIN TREINA.TBPESSOAIMOVEL
+    ON TBPESSOA.PESCODIGO = TBPESSOAIMOVEL.PESCODIGO
+  LEFT JOIN TREINA.TBIMOVEL
+    ON TBPESSOAIMOVEL.IMVCODIGO = TBIMOVEL.IMVCODIGO
+
+3. Faça uma consulta que traga o nome das pessoas, o tipo de contato e número de
+contato, de todas as pessoas que possuem celular com o DDD 47. Ordene pelo
+nome das pessoas.
+
+SELECT TBPESSOA.PESNOME,
+       TBPESSOACONTATO.CTPDESCRICAO,
+       TBPESSOACONTATO.CTPNUMERO
+  FROM TREINA.TBPESSOA
+ RIGHT JOIN TREINA.TBPESSOACONTATO
+    ON TBPESSOA.PESCODIGO = TBPESSOACONTATO.PESCODIGO
+ WHERE CTPNUMERO LIKE '47%'
+ ORDER BY PESNOME;
+
+4. Faça uma consulta relacionando todas as tabelas, exibindo as colunas: nome da
+pessoa, número de contato dela, descrição de seu imóvel, área do imóvel, tipo do
+logradouro do imóvel, descrição do logradouro do imóvel. Ordene pelo nome das
+pessoas.
+
+SELECT TBPESSOA.PESNOME,
+       TBPESSOACONTATO.CTPNUMERO,
+       TBIMOVEL.IMVDESCRICAO,
+       (IMVLARGURA*IMVCOMPRIMENTO) AS AREA,
+       TBLOGRADOURO.LOGTIPO,
+       TBLOGRADOURO.LOGDESCRICAO
+  FROM TREINA.TBPESSOA
+  FULL OUTER JOIN TREINA.TBPESSOACONTATO
+    ON TBPESSOA.PESCODIGO = TBPESSOACONTATO.PESCODIGO
+  FULL OUTER JOIN TREINA.TBTAXA
+    ON TBPESSOA.PESCODIGO = TBTAXA.PESCODIGO
+  FULL OUTER JOIN TREINA.TBPESSOAIMOVEL
+    ON TBPESSOA.PESCODIGO = TBPESSOAIMOVEL.PESCODIGO
+  FULL OUTER JOIN TREINA.TBIMOVEL
+    ON TBPESSOAIMOVEL.IMVCODIGO = TBIMOVEL.IMVCODIGO
+  FULL OUTER JOIN TREINA.TBLOGRADOURO
+    ON TBIMOVEL.LOGCODIGO = TBLOGRADOURO.LOGCODIGO
+ ORDER BY PESNOME;
+
+5. Realize uma consulta que retorne o nome das pessoas e a quantidade de contatos
+que cada uma possui (se não possuir contatos deve aparecer como 0).
+
+SELECT TBPESSOA.PESNOME,
+       COUNT(TBPESSOACONTATO.CTPNUMERO)
+  FROM TREINA.TBPESSOA
+  LEFT JOIN TREINA.TBPESSOACONTATO
+    ON TBPESSOA.PESCODIGO = TBPESSOACONTATO.PESCODIGO
+ GROUP BY TBPESSOA.PESNOME
+ 
+=================================================================================
+
+LISTA DE EXERCÍCIOS 05
+
+1. Insira os seguintes registros na tabela de logradouros:
+Logtipo    Logdescricao
+TRAVESSA   CINCO
+AVENIDA    CINCO
+AVENIDA    SEIS
+RUA        CINCO
+
+
+INSERT INTO TREINA.TBLOGRADOURO (LOGTIPO, LOGDESCRICAO)
+  VALUES ('TRAVESSA', 'CINCO'),
+        ('AVENIDA', 'CINCO'),
+		('AVENIDA', 'SEIS'),
+		('RUA', 'CINCO');
+
+2. Insira os seguintes registros na tabela de pessoas:
+Pesnome             Pessexo    Pestipo   Logcodigo
+ANTONIO WILSON      MASCULINO  FÍSICA    TRAVESSA CINCO
+ELISANE PORTELA     FEMININO   FÍSICA    AVENIDA CINCO
+FERNANDES DE SOUSA  MASCULINO  FÍSICA    AVENIDA SEIS
+MERCEARIA           OUTRO      JURÍDICA  RUA CINCO
+
+INSERT INTO TREINA.TBPESSOA (PESNOME, PESSEXO, PESTIPO, LOGCODIGO)
+  VALUES ('ANTONIO WILSON', 1, 1, 13),
+		 ('ELISANE PORTELA', 2, 1, 14),
+		 ('FERNANDES DE SOUSA', 1, 1, 15),
+		 ('MERCEARIA', 3, 2, 16)
+		 
+3. Insira os seguintes registros na tabela de contatos:
+Pescodigo           Ctpnumero      Ctpdescricao  Ctpramal
+ANTONIO WILSON      47-99635-1425  CELULAR
+ELISANE PORTELA     48-98868-3313  CELULAR
+ELISANE PORTELA     47-99889-2559  CELULAR
+FERNANDES DE SOUSA  47-3522-1361   FIXO          258
+MERCEARIA           47-3539-3258   FIXO
+
+INSERT INTO TREINA.TBPESSOACONTATO
+  VALUES (17, '47-99635-1425', 'CELULAR', NULL),
+         (18, '48-98868-3313', 'CELULAR', NULL),
+		 (18, '47-99889-2559', 'CELULAR', NULL),
+		 (19, '47-3522-1361', 'FIXO', 258),
+		 (20, '47-3539-3258', 'FIXO', NULL)
+		 
+4. Insira os seguintes registros na tabela de imóveis:
+Imvdescricao         Imvlargura Imvcomprimento Logcodigo
+CASA DE MADEIRA 5    13         14             TRAVESSA CINCO
+CASA DE ALVENARIA 5  15         19             AVENIDA CINCO
+CASA DE MADEIRA 6    14         15             AVENIDA SEIS
+CASA DE ALVENARIA 6  17         14             RUA CINCO
+CASA DE MADEIRA 7    13         13             AVENIDA SEIS
+
+INSERT INTO TREINA.TBIMOVEL (IMVDESCRICAO, IMVLARGURA, IMVCOMPRIMENTO, LOGCODIGO)
+  VALUES ('CASA DE MADEIRA 5', 13, 14, 13),
+         ('CASA DE ALVENARIA 5', 15, 19, 14),
+		 ('CASA DE MADEIRA 6', 14, 15, 15),
+		 ('CASA DE ALVENARIA 6', 17, 14, 16),
+		 ('CASA DE MADEIRA 7', 13, 13, 15)
+
+
+5. Crie os seguintes relacionamentos entre pessoas e imóveis:
+a. ANTONIO WILSON é proprietário do imóvel CASA DE MADEIRA 6;
+b. ELISANE PORTELA é proprietária do imóvel CASA DE MADEIRA 7;
+c. MERCEARIA é proprietário do imóvel CASA DE MADEIRA 6;
+d. MERCEARIA é proprietário do imóvel CASA DE ALVENARIA 5.
+
+INSERT INTO TREINA.TBPESSOAIMOVEL
+  VALUES (17, 15),
+         (18, 17),
+		 (20, 15),
+		 (20, 14)
+		 
