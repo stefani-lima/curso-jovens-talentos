@@ -1,0 +1,31 @@
+p {
+    color: yellow;
+    font-weight: 900px;
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: green;
+}
+
+.redes_sociais {
+    background-color: rgb(98, 200, 98);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 22px;
+    color: green;
+}
+
+* {
+    background-image: url(/html-css/pexels-nemuel-6424583.jpg);
+    background-repeat: no-repeat;
+}
+
+.informacoes_basicas {
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+}
+
+.sobre {
+    font-family: sans-serif;
+    font-size: 20px;
+    color: blue;
+    font-style: italic;
+}

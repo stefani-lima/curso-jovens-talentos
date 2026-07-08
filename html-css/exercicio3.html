@@ -3,90 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delivery</title>
+    <title>Exercício 03</title>
+    <link rel="stylesheet" href="exercicio3.css">
 </head>
 <body>
-    <h1>Peça a sua pizza aqui</h1>
+    <div class="informacoes_basicas">
+        <h1>Teste de CSS</h1>
+        <p>Esta página é somente um teste do estilo CSS aplicado!</p>
+    </div>
 
-    <form action="teste.php" method="post">
-        <!-- CLIENTE -->
-        <div class="cliente">
-            <fieldset>
-                <!-- NOME -->
-                <label for="nome">Nome:</label>
-                <input type="text" name="nome" id="nome">
-                <!-- ENDEREÇO -->
-                <label for="endereco">Endereço:</label>
-                <input type="text" name="endereco" id="endereco">
-                <!-- NUMERO CASA -->
-                <label for="numero_casa">Número:</label>
-                <input type="number" name="numero_casa" id="numero_casa">
-                <!-- BAIRRO -->
-                <label for="bairro">Bairro:</label>
-                <input type="text" name="bairro" id="bairro">
-                <!-- CIDADE -->
-                <label for="cidade">Cidade:</label>
-                <input type="text" name="cidade" id="cidade">
-                <!-- TELEFONE -->
-                <label for="telefone">Telefone:</label>
-                <input type="tel" name="telefone" id="telefone">
-                <!-- EMAIL -->
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email">
-            </fieldset>        
-        </div>
-        <!-- PEDIDO -->
-        <div class="pedido">
-            <fieldset>
-                <!-- TAMANHO -->
-                <label for="tamanho_pizza">Tamanho da Pizza:</label>
-                <select name="tamanho_pizza" id="tamanho_pizza">
-                    <option value="" disabled selected>Selecione o tamanho</option>
-                    <option value="pequena">Pequena</option>
-                    <option value="media">Média</option>
-                    <option value="grande">Grande</option>
-                    <option value="gigante">Gigante</option>
-                </select>
-                <!-- SABOR -->
-                <label for="sabor_pizza">Sabor da Pizza:</label>
-                <select name="sabor_pizza" id="sabor_pizza" multiple>
-                    <option value="" disabled selected>Selecione o sabor</option>
-                    <option value="sabor1">4 queijos</option>
-                    <option value="sabor2">Pepperoni</option>
-                    <option value="sabor3">Strogonoff de Carne</option>
-                    <option value="sabor4">Mexicana</option>
-                    <option value="sabor5">Calabresa</option>
-                    <option value="sabor6">Chocolate Branco</option>
-                    <option value="sabor7">Chocolate Preto</option>
-                </select>
-                <!-- BORDA -->
-                <label for="borda_pizza">Borda da Pizza:</label>
-                <select name="borda_pizza" id="borda_pizza">
-                    <option value="" disabled selected>Selecione a borda</option>
-                    <option value="sem_borda">Sem borda</option>
-                    <option value="requeijao">Requeijão</option>
-                    <option value="chocolate">Chocolate</option>
-                </select>
-                <!-- OBSERVAÇÃO -->
-                <div class="observacao">
-                    <label for="observacao">Observação</label>
-                    <textarea name="observacao" id="observacao"></textarea>
-                </div>
-            </fieldset>
-            <!-- PAGAMENTO -->
-            <div class="pagamento">
-                <fieldset>
-                    <label for="pagamento">Pagamento:</label>
-                    <select name="pagamento" id="pagamento">
-                        <option value="dinheiro">Dinheiro</option>
-                        <option value="cartao">Cartão</option>
-                        <option value="cheque">Cheque</option>
-                    </select>
-                </fieldset>
-            </div>
-            <!-- SUBMIT -->
-            <input type="submit" value="Enviar Pedido">
-        </div>          
-    </form>
+    <div class="sobre">
+        <p>teste</p>
+        <h1>teste</h1>
+    </div>
+
+    <div class="redes_sociais">
+        <p>teste</p>
+        <h1>teste</h1>
+    </div>
 </body>
 </html>
