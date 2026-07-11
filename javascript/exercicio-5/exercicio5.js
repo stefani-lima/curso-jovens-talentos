@@ -1,7 +1,8 @@
 function funcaoEstadoMental(estado_mental) {
+    resultado.innerHTML = "";
+    
     let estado = document.getElementById('estado_mental').value;
     let resultado = document.getElementById('resultado');
-    resultado.innerHTML = "";
 
     if (estado === "bem") {
         resultado.style.backgroundColor = "green";
