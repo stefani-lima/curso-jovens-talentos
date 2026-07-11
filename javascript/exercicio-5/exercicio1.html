@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currículo</title>
-    <link rel="stylesheet" href="exercicio3.css">
-    <script src="/javascript/exercicio5(p1).js"></script>
+    <script src="/javascript/exercicio-5/exercicio2.js" defer></script>
+    <script src="/javascript/exercicio-5/exercicio3.js" defer></script>
 </head>
 <body>
     <header>
-        <div class="informacoes_basicas">
+        <div id="div">
+            <button type="button" onclick="funcaoExibirValores(aValores)">Exibir Valores</button>
+        </div>
+        <button type="button" onclick="funcaoMostrarEsconder(div1)">Mostrar ou Esconder</button>
+        <div class="informacoes_basicas" id="div1">
             <h1>Stéfani de Lima dos Santos, 21 anos</h1>
             <p><strong>Estudante de Sistemas de Informação | Desenvolvedora Back-end Júnior</strong></p>
             <p>Rio do Sul, SC. Bairro Albertina | (47) 98816-4469 | stfani.lima04@gmail.com</p>
@@ -22,13 +26,15 @@
 
     </header>
     <main>
-        <div class="sobre">
+        <button type="button" onclick="funcaoMostrarEsconder(div2)">Mostrar ou Esconder</button>
+        <div class="sobre" id="div2">
             <h2>Sobre</h2>
             <p>Estudante de Sistemas de Informação com foco em desenvolvimento back-end utilizando Python e PostgreSQL.<br> Possuo experiência com lógica de programação, modelagem de banco de dados, desenvolvimento web e projetos acadêmicos.<br> Busco minha primeira oportunidade na área de tecnologia para desenvolver minhas habilidades práticas e crescer profissionalmente. </p>
         </div>
     </main>
     <section>
-        <div class="habilidades">
+        <button type="button" onclick="funcaoMostrarEsconder(div3)">Mostrar ou Esconder</button>
+        <div class="habilidades" id="div3">
             <h2>Tecnologias</h2>
             <ul>
                 <li>Python</li>

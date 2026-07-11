@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 05</title>
+    <script src="/javascript/exercicio-5/exercicio5.js"></script>
+</head>
+<body>
+    <form action="" method="post">
+        <label for="estado_mental">Estado Mental</label>
+        <select name="estado_mental" id="estado_mental" onchange="funcaoEstadoMental(this)">
+            <option value="">Selecione: </option>
+            <option value="bem">Bem</option>
+            <option value="mais_ou_menos">Mais ou Menos</option>
+            <option value="mal">Mal</option>
+        </select>
+    </form>
+
+    <div id="resultado">
+        <p id="texto">Resultado</p>
+    </div>
+</body>
+</html>
